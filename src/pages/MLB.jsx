@@ -27,7 +27,6 @@ export default function MLB() {
     };
   
     const [showTable, setShowTable] = useState(false);
-    const [tableData, setTableData] = useState(null);
     const [requestData, setRequestData] = useState()
     const toggleTable =  () => {
             let queryInfo = {

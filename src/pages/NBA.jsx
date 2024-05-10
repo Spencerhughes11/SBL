@@ -1,27 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Col, Container, Row, 
-        Button, Table,Form, FormGroup, Input, Label} from "reactstrap";
-import Query from '../components/MLBQueries';
+        Button} from "reactstrap";
 import NBAQuery from "../components/NBAQueries";
-// import DropdownMenu, {
-//     DropdownItemCheckbox,
-//     DropdownItemCheckboxGroup,
-//   } from '@atlaskit/dropdown-menu';
+
 import Select from 'react-select';
 
 
 export default function NBA() {
-    // const [requestData, setRequestData] = useState(null);
 
-    // // let handleRequest 
-
-    // const responseData = Temp({requestData});
-    // let requestData = {table: 'ship'}
-    // return(
-    //     <Container className="vh-100 ">
-    //         <Button>Click</Button>
-    //     </Container>
-    // );
     const [selectedYear, setSelectedYear] = useState({label: 'all', value: 'all'});
     const [selectedTeam1, setSelectedTeam1] = useState({ label: 'Team(s)', value: 'ALL' });
     const [selectedTeam, setSelectedTeam] = useState({ label: 'Team(s)', value: 'ALL' });
@@ -46,47 +32,36 @@ export default function NBA() {
     };
     const handlePlayerCols = (selectedOption) => {
         setSelectedPlayerCols(selectedOption);
-        // console.log('selected cols obj: ', selectedCols);
       };
     const handleTeamCols = (selectedOption) => {
         setSelectedTeamCols(selectedOption);
-        // console.log('selected cols obj: ', selectedCols);
       };
     const handleTypeChange = (selectedOption) => {
         setSelectedType(selectedOption);
-        // console.log('selected type: ', selectedType);
         setSelectedColValues([]);
       };
       
       // TEAM Stuff
     const handlePlayoffChange = (selectedOption) => {
         setPlayoffs(selectedOption);
-        // console.log('selected type: ', selectedType);
       };
       
       
       useEffect(() => {
-        // console.log('selCols', selectedCols);
         if (selectedPlayerCols.length > 0) {
           const selectedColValues = selectedPlayerCols.map(col => col.value);
-        //   console.log('selectedColValues: ', selectedColValues);
           setSelectedColValues(selectedColValues);
         }
         if (selectedTeamCols.length > 0) {
           const selectedColValues = selectedTeamCols.map(col => col.value);
-        //   console.log('selectedColValues: ', selectedColValues);
           setSelectedColValues(selectedColValues);
         }
       }, [selectedPlayerCols, selectedTeamCols]);
       
     let queryInfo;
     const [showTable, setShowTable] = useState(false);
-    const [tableData, setTableData] = useState(null);
     const [requestData, setRequestData] = useState()
     const toggleTable =  () => {
-        // try {
-            // const requestData = { table: 'ship' };
-        //     const responseData = await Temp(requestData);
         if( selectedType.value === 'Players'){
              queryInfo = {
                 table: selectedType.value,
@@ -105,13 +80,9 @@ export default function NBA() {
             }
           }
         
-            // console.log(queryInfo.cols);
             setRequestData(queryInfo);
             setShowTable(true);
-            // console.log(requestData);
-        // } catch (error) {
-        //     console.error('Error fetching data: ', error);
-        // }
+     
     };
     const years = ['2015', '2016', '2017', '2018', '2019', '2020',
                    '2021', '2022', '2023', '2024', 'all'].map(year => ({ label: year, value: year }));
